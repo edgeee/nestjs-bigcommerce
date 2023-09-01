@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { BigcommerceCoreService } from './bigcommerce-core.service';
+import { BigcommerceCoreService } from '@nestjs-bigcommerce/core/src/bigcommerce-core/bigcommerce-core.service';
 import { BIGCOMMERCE_CORE_OPTIONS } from './bigcommerce-core.constants';
 
 describe('BigcommerceCoreService', () => {
