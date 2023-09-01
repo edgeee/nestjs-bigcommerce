@@ -39,7 +39,9 @@
       "env": {
         "jest": true
       },
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
     }
   ]
 }

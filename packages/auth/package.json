@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "dependencies": {
     "tslib": "^2.3.0",
-    "@nestjs/common": "10.2.4"
+    "@nestjs/common": "10.2.4",
+    "@nestjs-bigcommerce/core": "*",
+    "@golevelup/nestjs-modules": "^0.7.0"
   },
   "type": "commonjs",
   "main": "./src/index.js",
