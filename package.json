@@ -2,12 +2,15 @@
   "name": "@nestjs-bigcommerce/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "lint": "nx affected:lint --fix"
+  },
   "private": true,
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@nestjs/testing": "^10.2.4",
     "@nx/eslint-plugin": "16.7.4",
     "@nx/jest": "16.7.4",
     "@nx/js": "16.7.4",
@@ -19,11 +22,12 @@
     "@typescript-eslint/parser": "^5.60.1",
     "eslint": "~8.46.0",
     "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "jest": "^29.4.1",
     "jest-environment-node": "^29.4.1",
     "nx": "16.7.4",
     "nx-cloud": "latest",
-    "prettier": "^2.6.2",
+    "prettier": "^3.0.3",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
     "typescript": "~5.1.3",
