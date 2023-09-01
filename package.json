@@ -5,7 +5,9 @@
   "scripts": {
     "lint": "nx affected:lint --fix",
     "release": "nx run-many --target=build && npx changeset publish",
-    "test": "nx affected:test"
+    "test": "nx affected:test",
+    "build": "nx affected:build",
+    "format": "prettier --write \"{packages,integration,benchmarks,tools}/**/*.ts\""
   },
   "private": true,
   "dependencies": {
