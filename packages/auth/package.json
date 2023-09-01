@@ -2,7 +2,8 @@
   "name": "@nestjs-bigcommerce/auth",
   "version": "0.0.1",
   "dependencies": {
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@nestjs/common": "10.2.4"
   },
   "type": "commonjs",
   "main": "./src/index.js",
