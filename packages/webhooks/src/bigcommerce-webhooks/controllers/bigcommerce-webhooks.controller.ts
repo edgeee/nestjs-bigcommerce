@@ -11,7 +11,7 @@ export class BigcommerceWebhooksController {
 
   @Post()
   @HttpCode(200)
-  async handle(@Body() payload: WebhookPayloadDto): Promise<void> {
+  async handleWebhookEvent(@Body() payload: WebhookPayloadDto): Promise<void> {
     const handlers = this.webhookHandlerExplorer.getWebhookScopeHandlers(
       payload.scope,
     );
@@ -19,8 +19,8 @@ export class BigcommerceWebhooksController {
     if (handlers) {
       const event: BigcommerceWebhookEvent<unknown> = {
         scope: payload.scope,
-        createdAt: new Date(payload.created_at),
-        storeId: +payload.store_id,
+        created_at: payload.created_at,
+        store_id: +payload.store_id,
         producer: payload.producer,
         hash: payload.hash,
         data: payload.data,

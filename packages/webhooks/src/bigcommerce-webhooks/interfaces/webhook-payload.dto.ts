@@ -4,5 +4,5 @@ export type WebhookPayloadDto = {
   scope: string;
   data: unknown;
   hash: string;
-  created_at: string;
+  created_at: number;
 };

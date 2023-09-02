@@ -1,8 +1,8 @@
 export interface BigcommerceWebhookEvent<T> {
   scope: string;
-  storeId: number;
+  store_id: number;
   data: T;
   hash: string;
-  createdAt: Date;
+  created_at: number;
   producer: string;
 }

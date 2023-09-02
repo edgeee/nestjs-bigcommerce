@@ -58,6 +58,11 @@ describe('WebhookHandlerExplorer', () => {
         'products/variants/updated',
       );
       expect(updatedHandlers?.length).toEqual(1);
+
+      const updateHandler = (
+        updatedHandlers as Array<AbstractBigCommerceWebhookHandler>
+      )[0];
+      expect(updateHandler).toBeInstanceOf(TestWebhookHandler);
     });
 
     it('should return undefined if no handlers are defined for scope', async () => {
