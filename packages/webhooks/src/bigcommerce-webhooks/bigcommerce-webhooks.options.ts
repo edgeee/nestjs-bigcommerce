@@ -5,4 +5,5 @@ export type BigcommerceWebhookAuth = {
 
 export type BigcommerceWebhooksModuleOptions = {
   auth?: BigcommerceWebhookAuth;
+  appHost: string;
 };

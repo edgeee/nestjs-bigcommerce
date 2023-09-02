@@ -5,10 +5,17 @@ import { createConfigurableDynamicRootModule } from '@golevelup/nestjs-modules';
 import { BigcommerceWebhooksModuleOptions } from './bigcommerce-webhooks.options';
 import { BIGCOMMERCE_WEBHOOKS_MODULE_OPTIONS } from './bigcommerce-webhooks.constants';
 import { DiscoveryModule } from '@golevelup/nestjs-discovery';
+import { BigcommerceWebhooksService } from './providers/bigcommerce-webhooks.service';
+import { AuthProviderService } from './providers/auth-provider.service';
 
 @Module({
   imports: [DiscoveryModule],
-  providers: [WebhookHandlerExplorer],
+  providers: [
+    WebhookHandlerExplorer,
+    BigcommerceWebhooksService,
+    AuthProviderService,
+  ],
+  exports: [BigcommerceWebhooksService],
   controllers: [BigcommerceWebhooksController],
 })
 export class BigcommerceWebhooksModule extends createConfigurableDynamicRootModule<
