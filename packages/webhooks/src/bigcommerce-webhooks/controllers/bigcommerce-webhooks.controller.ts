@@ -12,11 +12,11 @@ export class BigcommerceWebhooksController {
   @Post()
   @HttpCode(200)
   async handle(@Body() payload: WebhookPayloadDto): Promise<void> {
-    const handler = this.webhookHandlerExplorer.getWebhookScopeHandler(
+    const handlers = this.webhookHandlerExplorer.getWebhookScopeHandlers(
       payload.scope,
     );
 
-    if (handler) {
+    if (handlers) {
       const event: BigcommerceWebhookEvent<unknown> = {
         scope: payload.scope,
         createdAt: new Date(payload.created_at),
@@ -26,7 +26,9 @@ export class BigcommerceWebhooksController {
         data: payload.data,
       };
 
-      await handler.handle.call(handler, event);
+      for (const handler of handlers) {
+        await handler.handle.call(handler, event);
+      }
     }
   }
 }

@@ -5,21 +5,27 @@ import { AbstractBigCommerceWebhookHandler } from './bigcommerce-webhook-handler
 
 @Injectable()
 export class WebhookHandlerExplorer implements OnModuleInit {
-  private readonly handlers: Map<string, DiscoveredClass> = new Map();
+  private readonly handlers: Map<string, Array<DiscoveredClass>> = new Map();
 
   constructor(private readonly discover: DiscoveryService) {}
 
   /**
-   * Builds the table for scope => webhook handlers.
+   * Builds the map table for scope => webhook handlers.
    */
   async onModuleInit() {
-    const providers = await this.discover.providersWithMetaAtKey<string>(
+    const providers = await this.discover.providersWithMetaAtKey<Array<string>>(
       BIGCOMMERCE_WEBHOOK_SCOPE_METADATA,
     );
 
     for (const provider of providers) {
-      // <scope: discovered class>
-      this.handlers.set(provider.meta, provider.discoveredClass);
+      // <scope: [discovered classes]>
+      const scopes = provider.meta;
+
+      for (const scope of scopes) {
+        const scopeHandlers = this.handlers.get(scope) || [];
+        scopeHandlers.push(provider.discoveredClass);
+        this.handlers.set(scope, scopeHandlers);
+      }
     }
   }
 
@@ -29,17 +35,19 @@ export class WebhookHandlerExplorer implements OnModuleInit {
    * @param scope
    * @return AbstractBigCommerceWebhookHandler
    */
-  getWebhookScopeHandler(
+  getWebhookScopeHandlers(
     scope: string,
-  ): AbstractBigCommerceWebhookHandler | undefined {
-    const handlerClass = this.handlers.get(scope);
+  ): Array<AbstractBigCommerceWebhookHandler> | undefined {
+    const handlerClasses = this.handlers.get(scope);
 
-    if (!handlerClass) {
+    if (!handlerClasses) {
       Logger.warn(`Requested handler for unhandled scope: ${scope}`);
     }
 
-    return handlerClass
-      ? (handlerClass.instance as AbstractBigCommerceWebhookHandler)
+    return handlerClasses
+      ? (handlerClasses.map(
+          (handlerClass) => handlerClass.instance,
+        ) as Array<AbstractBigCommerceWebhookHandler>)
       : undefined;
   }
 }
