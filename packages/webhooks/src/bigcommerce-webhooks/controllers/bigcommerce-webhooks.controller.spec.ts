@@ -5,6 +5,7 @@ import { AbstractBigCommerceWebhookHandler } from '../providers/bigcommerce-webh
 import { BigcommerceWebhookEvent, WebhookPayloadDto } from '../interfaces';
 
 class TestWebhookHandler extends AbstractBigCommerceWebhookHandler {
+  // @ts-ignore
   async handle(event: BigcommerceWebhookEvent<unknown>): Promise<unknown> {
     return Promise.resolve(undefined);
   }
