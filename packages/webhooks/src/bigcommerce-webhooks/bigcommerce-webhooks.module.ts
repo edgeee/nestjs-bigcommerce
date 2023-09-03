@@ -7,9 +7,10 @@ import { BIGCOMMERCE_WEBHOOKS_MODULE_OPTIONS } from './bigcommerce-webhooks.cons
 import { DiscoveryModule } from '@golevelup/nestjs-discovery';
 import { BigcommerceWebhooksService } from './providers/bigcommerce-webhooks.service';
 import { AuthProviderService } from './providers/auth-provider.service';
+import { BigcommerceAuthModule } from '@nestjs-bigcommerce/auth';
 
 @Module({
-  imports: [DiscoveryModule],
+  imports: [DiscoveryModule, BigcommerceAuthModule.deferred()],
   providers: [
     WebhookHandlerExplorer,
     BigcommerceWebhooksService,

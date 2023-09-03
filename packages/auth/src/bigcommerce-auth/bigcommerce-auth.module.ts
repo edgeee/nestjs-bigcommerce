@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { BigcommerceAuthService } from './bigcommerce-auth.service';
 import { BigcommerceCoreModule } from '@nestjs-bigcommerce/core';
 import { createConfigurableDynamicRootModule } from '@golevelup/nestjs-modules';
-import { BigcommerceAuthModuleOptions } from './interfaces/bigcommerce-auth-module-options.interface';
+import { BigcommerceAuthModuleOptions } from './interfaces';
 import { BIGCOMMERCE_AUTH_MODULE_OPTIONS } from './bigcommerce-auth.constants';
 
 @Module({

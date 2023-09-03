@@ -1,4 +1,4 @@
 export interface BigcommerceAuthModuleOptions {
-  hostUrl: string;
+  appHost: string;
   callbackUrlPath: string;
 }

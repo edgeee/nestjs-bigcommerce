@@ -1,8 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { BigcommerceCoreService } from '@nestjs-bigcommerce/core';
-import { AuthCallbackQueryParams } from './interfaces/auth-callback-query-params.interface';
+import { AuthCallbackQueryParams } from './interfaces';
 import { BIGCOMMERCE_AUTH_MODULE_OPTIONS } from './bigcommerce-auth.constants';
-import { BigcommerceAuthModuleOptions } from './interfaces/bigcommerce-auth-module-options.interface';
+import { BigcommerceAuthModuleOptions } from './interfaces';
 import {
   AuthResponsePayload,
   JwtResponsePayload,
@@ -64,7 +64,7 @@ export class BigcommerceAuthService {
 
   private get _authClient() {
     const callbackUrl =
-      `${this.authOptions.hostUrl}/${this.authOptions.callbackUrlPath}`.replace(
+      `${this.authOptions.appHost}/${this.authOptions.callbackUrlPath}`.replace(
         '//',
         '/',
       );
